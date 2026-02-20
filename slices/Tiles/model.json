@@ -1,0 +1,46 @@
+{
+  "id": "tiles",
+  "type": "SharedSlice",
+  "name": "Tiles",
+  "description": "Tiles",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "tilesgroup": {
+          "type": "Group",
+          "config": {
+            "label": "TilesGroup",
+            "repeat": true,
+            "fields": {
+              "tile": {
+                "type": "Link",
+                "config": {
+                  "label": "Tile",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "tiles",
+                      "fields": [
+                        "title",
+                        "text",
+                        "style"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

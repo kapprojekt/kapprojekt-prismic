@@ -4,4 +4,5 @@ import dynamic from "next/dynamic";
 
 export const components = {
   home_section: dynamic(() => import("./MainSection")),
+  tiles: dynamic(() => import("./Tiles")),
 };

@@ -8,6 +8,7 @@ export type HomeSectionProps = SliceComponentProps<Content.HomeSectionSlice>;
 const HomeSection: FC<HomeSectionProps> = ({ slice }) => {
   return (
     <section
+      className="h-screen relative"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
@@ -22,7 +23,10 @@ const HomeSection: FC<HomeSectionProps> = ({ slice }) => {
           Link
         </PrismicNextLink>
       ))}
-      <PrismicNextImage field={slice.primary.background} />
+      <PrismicNextImage
+        className="absolute inset-0 object-cover w-full h-full -z-10"
+        field={slice.primary.background}
+      />
     </section>
   );
 };

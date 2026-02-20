@@ -69,7 +69,7 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomeDocumentDataSlicesSlice = HomeSectionSlice;
+type HomeDocumentDataSlicesSlice = TilesSlice | HomeSectionSlice;
 
 /**
  * Content for Home documents
@@ -130,7 +130,290 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-export type AllDocumentTypes = HomeDocument;
+type PortfolioDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Portfolio documents
+ */
+interface PortfolioDocumentData {
+  /**
+   * Slice Zone field in *Portfolio*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<PortfolioDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Portfolio*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: portfolio.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Portfolio*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: portfolio.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Portfolio*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Portfolio document from Prismic
+ *
+ * - **API ID**: `portfolio`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortfolioDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PortfolioDocumentData>,
+    "portfolio",
+    Lang
+  >;
+
+/**
+ * Item in *Project → Photos*
+ */
+export interface ProjectDocumentDataPhotosItem {
+  /**
+   * Photo field in *Project → Photos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.photos[].photo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  photo: prismic.ImageField<never>;
+}
+
+type ProjectDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Project documents
+ */
+interface ProjectDocumentData {
+  /**
+   * Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Location field in *Project*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
+   * Date field in *Project*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+
+  /**
+   * ProjectType field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.projecttype
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  projecttype: prismic.KeyTextField;
+
+  /**
+   * InstagramLink field in *Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.instagramlink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  instagramlink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Photos field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.photos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  photos: prismic.GroupField<Simplify<ProjectDocumentDataPhotosItem>>;
+
+  /**
+   * Slice Zone field in *Project*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Project document from Prismic
+ *
+ * - **API ID**: `project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectDocumentData>,
+    "project",
+    Lang
+  >;
+
+/**
+ * Content for Tile documents
+ */
+interface TilesDocumentData {
+  /**
+   * Title field in *Tile*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tiles.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Tile*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tiles.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Style field in *Tile*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: primary
+   * - **API ID Path**: tiles.style
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  style: prismic.SelectField<"primary" | "secondary", "filled">;
+}
+
+/**
+ * Tile document from Prismic
+ *
+ * - **API ID**: `tiles`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TilesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<TilesDocumentData>, "tiles", Lang>;
+
+export type AllDocumentTypes =
+  | HomeDocument
+  | PortfolioDocument
+  | ProjectDocument
+  | TilesDocument;
 
 /**
  * Primary content in *MainSection → Main → Primary*
@@ -237,6 +520,67 @@ export type HomeSectionSlice = prismic.SharedSlice<
   HomeSectionSliceVariation
 >;
 
+/**
+ * Item in *Tiles → Default → Primary → TilesGroup*
+ */
+export interface TilesSliceDefaultPrimaryTilesgroupItem {
+  /**
+   * Tile field in *Tiles → Default → Primary → TilesGroup*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tiles.default.primary.tilesgroup[].tile
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  tile: ContentRelationshipFieldWithData<
+    [{ id: "tiles"; fields: ["title", "text", "style"] }]
+  >;
+}
+
+/**
+ * Primary content in *Tiles → Default → Primary*
+ */
+export interface TilesSliceDefaultPrimary {
+  /**
+   * TilesGroup field in *Tiles → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tiles.default.primary.tilesgroup[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tilesgroup: prismic.GroupField<
+    Simplify<TilesSliceDefaultPrimaryTilesgroupItem>
+  >;
+}
+
+/**
+ * Default variation for Tiles Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TilesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TilesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Tiles*
+ */
+type TilesSliceVariation = TilesSliceDefault;
+
+/**
+ * Tiles Shared Slice
+ *
+ * - **API ID**: `tiles`
+ * - **Description**: Tiles
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TilesSlice = prismic.SharedSlice<"tiles", TilesSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -261,11 +605,25 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      PortfolioDocument,
+      PortfolioDocumentData,
+      PortfolioDocumentDataSlicesSlice,
+      ProjectDocument,
+      ProjectDocumentData,
+      ProjectDocumentDataPhotosItem,
+      ProjectDocumentDataSlicesSlice,
+      TilesDocument,
+      TilesDocumentData,
       AllDocumentTypes,
       HomeSectionSlice,
       HomeSectionSliceDefaultPrimary,
       HomeSectionSliceVariation,
       HomeSectionSliceDefault,
+      TilesSlice,
+      TilesSliceDefaultPrimaryTilesgroupItem,
+      TilesSliceDefaultPrimary,
+      TilesSliceVariation,
+      TilesSliceDefault,
     };
   }
 }

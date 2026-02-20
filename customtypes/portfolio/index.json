@@ -1,24 +1,14 @@
 {
   "format": "page",
-  "id": "home",
-  "label": "Home",
-  "repeatable": false,
-  "status": true,
+  "id": "portfolio",
   "json": {
     "Main": {
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "tiles": {
-              "type": "SharedSlice"
-            },
-            "home_section": {
-              "type": "SharedSlice"
-            }
-          }
-        }
+          "choices": {}
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
@@ -48,5 +38,8 @@
         "type": "Image"
       }
     }
-  }
+  },
+  "label": "Portfolio",
+  "repeatable": false,
+  "status": true
 }
